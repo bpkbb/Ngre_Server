@@ -17,7 +17,7 @@ public class Anwenderinterface {
         fenster.setContentPane(mainPanel);
         fenster.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         fenster.pack();
-        fenster.setVisible(true);
+        fenster.setVisible(false);
         fenster.setBounds(400,300,400,300);
 
         startButton.addActionListener(new ActionListener() {
@@ -26,5 +26,9 @@ public class Anwenderinterface {
 
             }
         });
+    }
+
+    public void setFensterVisible(boolean b){
+        fenster.setVisible(b);
     }
 }
