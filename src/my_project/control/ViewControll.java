@@ -15,6 +15,7 @@ public class ViewControll {
         i = new ClientInterface();
     }
 
+
     public void setServerOn(){
         a.setFensterVisible(true);
     }
