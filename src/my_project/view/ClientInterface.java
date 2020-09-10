@@ -15,7 +15,7 @@ public class ClientInterface {
     private JButton closeButton;
 
     public ClientInterface(){
-        frame = new JFrame("Jilo-Client");
+        frame = new JFrame("Joli-Client");
         frame.setContentPane(mainPanel);
         frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         frame.pack();

@@ -11,7 +11,7 @@ public class Steuerungsfenster {
     private JPanel ASC;
 
     public Steuerungsfenster() {
-        fenster = new JFrame("Startfenster zu Ngre Server und Joli-Client");
+        fenster = new JFrame("Startfenster zum Ngre Server und Joli-Client");
         fenster.setContentPane(ASC);
         serverButton.addActionListener(new ActionListener() {
             @Override
