@@ -25,15 +25,14 @@ public class ClientInterface {
         frame.setContentPane(mainPanel);
         frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         frame.pack();
-        frame.setVisible(false);
+        frame.setVisible(true);
         frame.setBounds(600,300,400,300);
 
         connectButton.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent actionEvent) {
-                if(remoteIPText.getText() != null && portTextField != null){
+                if(remoteIPText.getText() != null && portTextField != null && nameTextField.getText() != null){
                     try{
-                        System.out.println("Hello world)");
                         vC.erstelleClient(remoteIPText.getText(), Integer.parseInt(portTextField.getText()));
                     }catch(NumberFormatException e){
                         System.out.println(e.getMessage());
@@ -45,7 +44,7 @@ public class ClientInterface {
         sendButton.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent actionEvent) {
-                vC.leiteMessageWeiter(messageField.getText());
+                vC.leiteMessageWeiter(nameTextField.getText() +": " + messageField.getText());
             }
         });
     }
