@@ -28,14 +28,14 @@ public class Steuerungsfenster {
             @Override
             public void actionPerformed(ActionEvent actionEvent) {
                 vC.setServerOn();
-                fenster.setVisible(false);
+                fenster.setVisible(true);
             }
         });
         clientButton.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent actionEvent) {
                 vC.setClientOn();
-                fenster.setVisible(false);
+                fenster.setVisible(true);
             }
         });
     }
