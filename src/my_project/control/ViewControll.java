@@ -34,7 +34,11 @@ public class ViewControll {
         sC.erstelleClient(serverIP, serverPort);
     }
 
-    public void sendMessage (String s){
-        sC.sendMessage(s);
-    }
+   public void leiteMessageWeiter(String s){
+        a.updateNachrichten(s);
+        i.updateNachrichten(s);
+   }
+
+
+
 }

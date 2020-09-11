@@ -37,6 +37,7 @@ public class Anwenderinterface {
                     vC.erstellenServer(Integer.parseInt(textField1.getText()));
                 }catch(NumberFormatException e){
                     System.out.println(e.getMessage());
+                    JOptionPane.showMessageDialog(null,"Bitte nur Zahlen eingeben");
                 }
 
             }

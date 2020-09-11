@@ -16,8 +16,9 @@ public class ServerControll {
     }
 
     public void einenServerHinzufuegen(int port){
+        ts = new TestServer(port, this);
         System.out.println("Erstelle Server mit Port: " + port);
-        ts = new TestServer(port);
+
 
     }
 
@@ -27,8 +28,9 @@ public class ServerControll {
 
     }
 
-    public void sendMessage(String s){
-        tC.send(s);
+
+    public void leiteMessageWeiter(String s){
+        vC.leiteMessageWeiter(s);
     }
 
 }

@@ -45,7 +45,7 @@ public class ClientInterface {
         sendButton.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent actionEvent) {
-                vC.sendMessage(messageField.getText());
+                vC.leiteMessageWeiter(messageField.getText());
             }
         });
     }
@@ -56,5 +56,9 @@ public class ClientInterface {
 
     public void updateNachrichten(String s){
         receivedField.setText(receivedField.getText()+ "\n" + s);
+    }
+
+    public String getMessage(){
+        return messageField.getText();
     }
 }
