@@ -14,7 +14,7 @@ public class ViewControll {
         sC = serverControll;
         a = new Anwenderinterface(this);
         s = new Steuerungsfenster(this);
-        i = new ClientInterface();
+        i = new ClientInterface(this);
     }
 
 
@@ -28,5 +28,13 @@ public class ViewControll {
 
     public void erstellenServer(int port){
         sC.einenServerHinzufuegen(port);
+    }
+
+    public void erstelleClient(String serverIP, int serverPort){
+        sC.erstelleClient(serverIP, serverPort);
+    }
+
+    public void sendMessage (String s){
+        sC.sendMessage(s);
     }
 }

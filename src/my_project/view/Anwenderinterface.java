@@ -46,4 +46,8 @@ public class Anwenderinterface {
     public void setFensterVisible(boolean b){
         fenster.setVisible(b);
     }
+
+    public void updateNachrichten(String s){
+        textPane1.setText(textPane1.getText()+ "\n" + s);
+    }
 }
