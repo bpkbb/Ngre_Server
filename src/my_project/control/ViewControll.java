@@ -2,6 +2,7 @@ package my_project.control;
 
 import KAGO_framework.model.abitur.datenstrukturen.List;
 import KAGO_framework.model.abitur.netz.Client;
+import my_project.model.TestClient;
 import my_project.view.Anwenderinterface;
 import my_project.view.ClientInterface;
 import my_project.view.Steuerungsfenster;
@@ -9,13 +10,12 @@ import my_project.view.Steuerungsfenster;
 public class ViewControll {
     private Anwenderinterface a;
     private ClientInterface i;
-    private List<ClientInterface> clientListe;
      private Steuerungsfenster s;
      private ServerControll sC;
 
     public ViewControll(ServerControll serverControll) {
         sC = serverControll;
-        clientListe = new List<>();
+        i = new ClientInterface(this);
         a = new Anwenderinterface(this);
         s = new Steuerungsfenster(this);
     }
@@ -26,7 +26,7 @@ public class ViewControll {
     }
 
     public void setClientOn(){
-        clientListe.append(new ClientInterface(this));
+        i.setFensterVisible(true);
     }
 
     public void erstellenServer(int port){
@@ -39,16 +39,10 @@ public class ViewControll {
 
    public void leiteMessageWeiter(String s){
         a.updateNachrichten(s);
-       clientListe.toFirst();
-       while(clientListe.hasAccess()){
-            clientListe.getContent().updateNachrichten(s);
-            clientListe.next();
-       }
+       i.updateNachrichten(s);
    }
 
-   private void setzeListAuf(Client s){
+   public void leiteNachrichtAnServer(String s){
+        sC.leiteNachrichtAnServer(s);
     }
-
-
-
 }

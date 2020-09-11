@@ -1,6 +1,7 @@
 package my_project.view;
 
 import my_project.control.ViewControll;
+import my_project.model.TestClient;
 
 import javax.swing.*;
 import java.awt.event.ActionEvent;
@@ -18,6 +19,7 @@ public class ClientInterface {
     private JTextPane receivedField;
     private JButton closeButton;
     private ViewControll vC;
+    private TestClient myClient;
 
     public ClientInterface(ViewControll vC){
         this.vC = vC;
@@ -44,7 +46,7 @@ public class ClientInterface {
         sendButton.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent actionEvent) {
-                vC.leiteMessageWeiter(nameTextField.getText() +": " + messageField.getText());
+                vC.leiteNachrichtAnServer(nameTextField.getText() + ": " + messageField.getText());
             }
         });
     }
