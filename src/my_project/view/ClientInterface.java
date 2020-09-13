@@ -27,7 +27,7 @@ public class ClientInterface {
         frame.setContentPane(mainPanel);
         frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         frame.pack();
-        frame.setVisible(true);
+        frame.setVisible(false);
         frame.setBounds(600,300,400,300);
 
         connectButton.addActionListener(new ActionListener() {
@@ -57,6 +57,7 @@ public class ClientInterface {
 
     public void updateNachrichten(String s){
         receivedField.setText(receivedField.getText()+ "\n" + s);
+        messageField.setText(null);
     }
 
     public String getMessage(){
