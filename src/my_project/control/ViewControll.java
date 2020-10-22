@@ -38,11 +38,26 @@ public class ViewControll {
     }
 
    public void leiteMessageWeiter(String s){
-        a.updateNachrichten(s);
-       i.updateNachrichten(s);
+       a.updateNachrichten(s);
    }
 
    public void leiteNachrichtAnServer(String s){
         sC.leiteNachrichtAnServer(s);
     }
+
+    public void anzeigeClientAktualisieren(String s){
+        i.updateNachrichten(s);
+    }
+
+   public void setArtV (int artV){
+        sC.setArtV(artV);
+   }
+
+   public void setKey(String key){
+        sC.setKey(key);
+   }
+
+   public int getArtV(){
+        return sC.getArtV();
+   }
 }

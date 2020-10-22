@@ -18,6 +18,9 @@ public class ClientInterface {
     private JButton sendButton;
     private JTextPane receivedField;
     private JButton closeButton;
+    private JButton ceaserButton;
+    private JButton vigenereButton;
+    private JTextField keyFeld;
     private ViewControll vC;
     private TestClient myClient;
 
@@ -46,7 +49,34 @@ public class ClientInterface {
         sendButton.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent actionEvent) {
-                vC.leiteNachrichtAnServer(nameTextField.getText() + ": " + messageField.getText());
+                if (vC.getArtV() == 0){
+
+                }else{
+                    vC.leiteNachrichtAnServer(nameTextField.getText() + ": " + messageField.getText());
+                }
+
+            }
+        });
+        ceaserButton.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                if (keyFeld.getText().equals("")){
+
+                }else{
+                    vC.setArtV(1);
+                    vC.setKey(keyFeld.getText());
+                }
+            }
+        });
+        vigenereButton.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                if (keyFeld.getText().equals("")){
+
+                }else{
+                    vC.setArtV(2);
+                    vC.setKey(keyFeld.getText());
+                }
             }
         });
     }

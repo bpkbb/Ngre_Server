@@ -20,6 +20,7 @@ public class TestServer extends Server {
     @Override
     public void processMessage(String pClientIP, int pClientPort, String pMessage) {
         sC.leiteMessageWeiter(pMessage);
+        sendToAll(pMessage);
     }
 
     @Override
