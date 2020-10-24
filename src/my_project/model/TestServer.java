@@ -10,6 +10,7 @@ public class TestServer extends Server {
     public TestServer(int port, ServerControll sC){
         super(port);
         this.sC = sC;
+        System.out.println("Ein Server mit dem Port " + port + " wurde erstellt.");
     }
 
     @Override

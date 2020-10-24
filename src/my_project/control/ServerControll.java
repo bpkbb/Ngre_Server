@@ -1,11 +1,8 @@
 package my_project.control;
 
-import KAGO_framework.control.ViewController;
-import KAGO_framework.model.abitur.datenstrukturen.BinarySearchTree;
 import KAGO_framework.model.abitur.datenstrukturen.List;
 import my_project.model.TestClient;
 import my_project.model.TestServer;
-
 
 public class ServerControll {
     private ViewControll vC;
@@ -22,14 +19,11 @@ public class ServerControll {
 
     public void einenServerHinzufuegen(int port){
         ts = new TestServer(port, this);
-        System.out.println("Erstelle Server mit Port: " + port);
     }
 
     public void erstelleClient(String serverIP, int serverPort){
-        System.out.println("Erstelle Client mit Server: " + serverIP + ", auf: " + serverPort);
         tC =new TestClient(serverIP, serverPort, this);
     }
-
 
     public void leiteMessageWeiter(String s){
         vC.leiteMessageWeiter(s);
@@ -42,62 +36,66 @@ public class ServerControll {
         }else if (artV == 2){
             weiterzuleitendeNachricht = codeVigenere(s,key);
         }
-        System.out.println(weiterzuleitendeNachricht);
+        System.out.println("Die Nachricht: *" + s + "* wird verschlüsselt(" + key + ") übermittelt.");
+        System.out.println("*");
         tC.send(key + "$" +weiterzuleitendeNachricht);
     }
 
     public String codeVigenere(String message,String keys){
-        System.out.println("Länge: "+message.length());
         String chiffrierterText = "";
         char[] tmp = message.toCharArray();
         char[] temp = keys.toCharArray();
         List<Character> key = new List<>();
-        System.out.println("");
         for (int i = 0; i < temp.length; i++){
             key.append(temp[i]);
         }
         key.toFirst();
         for (int i = 0; i < tmp.length; i++){
             if (!key.hasAccess()) key.toFirst();
-            System.out.println(i+": "+key.getContent());
             chiffrierterText += code(Character.toString(tmp[i]),key.getContent());
             key.next();
         }
         return chiffrierterText;
     }
 
-    public String code(String plaintext, char k){
-        int key = (int) k-97;
-        String ciphertext = "";
-        plaintext = plaintext.toLowerCase(); //Alles in Kleinbuchstaben umwandeln
-        for(int i=0; i<plaintext.length(); i++){
-            //Buchstaben verschieben und an Geheimtext haengen
-            char next = plaintext.charAt(i);
-            ciphertext = ciphertext + shift(next, key);
+    public String code(String message, char k){
+        int key = (int) k-65;
+        String verschluesselteNachricht = "";
+        //message = message.toLowerCase();
+        for(int i=0; i<message.length(); i++){
+            char next = message.charAt(i);
+            verschluesselteNachricht = verschluesselteNachricht + verschiebe1(next, key);
         }
-        return ciphertext;
+        return verschluesselteNachricht;
     }
 
-    public char shift(char letter, int shift){
-        //Buchstaben als Zahl behandeln
-        if(letter>='a' && letter <='z'){ //Sonderzeichen nicht veraendern
-            letter += shift;
-            while(letter > 'z'){
-                letter -= 26;
+    public char verschiebe(char buchstabe, int key){
+        if(buchstabe>='a' && buchstabe <='z'){
+            buchstabe += key;
+            while(buchstabe > 'z'){
+                buchstabe -= 26;
             }
         }
-        return letter;
+        return buchstabe;
+    }
+
+    public char verschiebe1(char buchstabe, int key){
+        if(buchstabe>='A' && buchstabe <='z'){
+            buchstabe += key;
+            while(buchstabe > 'z'){
+                buchstabe -= 58;
+            }
+        }
+        return buchstabe;
     }
 
     public String decode(String ciphertext, char k){
-        int key = (int) k-97;
+        int key = (int) k-65;
         String decoded = "";
-        ciphertext = ciphertext.toLowerCase(); //Alles in Kleinbuchstaben umwandeln
+        //ciphertext = ciphertext.toLowerCase();
         for(int i=0; i<ciphertext.length(); i++){
-            //Jeden Buchstaben verschieben und zwar um (26-Schluessel(key)) Stellen
-            //und an entschluesselten Text anhaengen
             char next = ciphertext.charAt(i);
-            decoded = decoded + shift(next, 26-key);
+            decoded = decoded + verschiebe1(next, 58-key);
         }
         return decoded;
     }
@@ -107,14 +105,12 @@ public class ServerControll {
         char[] tmp = ciphertext.toCharArray();
         char[] temp = keys.toCharArray();
         List<Character> key = new List<>();
-        System.out.println("");
         for (int i = 0; i < temp.length; i++){
             key.append(temp[i]);
         }
         key.toFirst();
         for (int i = 0; i < tmp.length; i++){
             if (!key.hasAccess()) key.toFirst();
-            System.out.println(i+": "+key.getContent());
             dechiffrierterText += decode(Character.toString(tmp[i]),key.getContent());
             key.next();
         }
@@ -132,10 +128,14 @@ public class ServerControll {
 
     public void setArtV(int artV) {
         this.artV = artV;
+        System.out.println("------------------------------------------");
+        System.out.println("Verschlüsselungsart wurde verändert.");
     }
 
     public void setKey(String key) {
         this.key = key;
+        System.out.println("Schlüssel wurde verändert.");
+        System.out.println("------------------------------------------");
     }
 
     public int getArtV() {

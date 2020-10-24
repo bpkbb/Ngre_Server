@@ -20,7 +20,6 @@ public class ViewControll {
         s = new Steuerungsfenster(this);
     }
 
-
     public void setServerOn(){
         a.setFensterVisible(true);
     }
